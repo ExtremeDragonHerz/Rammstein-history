@@ -1,122 +1,181 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meu Site Hub</title>
-<style>
-  body { font-family: Arial, sans-serif; background: #111; color: #eee; margin: 0; padding: 0; }
-  header { background: #222; padding: 20px; text-align: center; }
-  h1 { margin: 0; font-size: 2em; }
-  nav { background: #333; overflow: hidden; }
-  nav a { float: left; display: block; color: #fff; padding: 14px 20px; text-decoration: none; text-align: center; }
-  nav a:hover { background: #ddd; color: black; }
-  .tab { display: none; padding: 20px; }
-  #gallery, #rammstein { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 15px; }
-  .item { background: #222; border-radius: 5px; overflow: hidden; text-align: center; cursor: pointer; }
-  .item img { width: 100%; height: auto; display: block; border-bottom: 1px solid #444; }
-  .item p { margin: 10px 0; font-weight: bold; font-size: 0.95em; }
-  #modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-  #modal img { max-width: 90%; max-height: 90%; border: 5px solid #fff; border-radius: 10px; }
-  #modal span { position: absolute; top: 20px; right: 40px; color: #fff; font-size: 3em; cursor: pointer; }
-  #watermark { position: fixed; bottom: 10px; right: 10px; font-size: 1em; color: rgba(255,255,255,0.2); pointer-events: none; }
-  footer { text-align: center; padding: 20px; background: #222; color: #aaa; font-size: 0.9em; }
-  input#search { margin: 20px auto; display: block; padding: 10px; width: 90%; max-width: 400px; border-radius: 5px; border: none; font-size: 1em; }
-  .social-links { text-align: center; margin-top: 20px; }
-  .social-links a { margin: 0 10px; color: #fff; text-decoration: none; }
-  .social-links a:hover { text-decoration: underline; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rammstein - Feuer und Flamme</title>
+    <style>
+        /* Estilo Básico para a Estrutura */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Fundo escuro */
+            color: #ffffff; /* Texto claro */
+        }
+        header {
+            background-color: #cc0000; /* Vermelho Rammstein */
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            color: #ffcc00; /* Destaque em amarelo/laranja */
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2, h3 {
+            color: #cc0000;
+            border-bottom: 2px solid #555;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+        /* Estilo do Rodapé e Marca D'água */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+            position: relative; /* Para a marca d'água */
+        }
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.2em;
+        }
+        .social-links a:hover {
+            color: #cc0000;
+        }
+        .watermark {
+            font-size: 0.7em;
+            color: rgba(255, 255, 255, 0.3); /* Cor bem sutil */
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            pointer-events: none; /* Garante que não interfira no clique */
+        }
+        .album-list li {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <h1>Meu Site Hub</h1>
-</header>
+    <header>
+        <h1>RAMMSTEIN</h1>
+        <p>"Einigkeit und Recht und Freiheit..." (Unity and Justice and Freedom...)</p>
+    </header>
 
-<nav>
-  <a href="#" onclick="openTab('gallery')">Galeria Geral</a>
-  <a href="#" onclick="openTab('rammstein')">Rammstein</a>
-  <a href="#" onclick="openTab('about')">Sobre Mim</a>
-</nav>
+    <nav>
+        <a href="#historia">História</a>
+        <a href="#discografia">Discografia</a>
+        <a href="#equipamento">Equipamento/Timbre</a>
+        <a href="#links">Links Oficiais</a>
+    </nav>
 
-<input type="text" id="search" placeholder="🔍 Buscar..." onkeyup="filterItems()">
+    <div class="container">
 
-<!-- Abas -->
-<div id="gallery" class="tab"></div>
-<div id="rammstein" class="tab"></div>
-<div id="about" class="tab">
-  <h2>Sobre Mim</h2>
-  <p>Olá! Meu nome é <strong>César Trivelato</strong>. Conheci Rammstein em 2021 e, desde então, eles fazem parte da minha vida. Tenho depressão, e a música da banda me ajudou muito em momentos difíceis. Espero um dia poder vê-los ao vivo. Tenho 17 anos e adoro compartilhar minha paixão por música e cultura através deste site.</p>
-</div>
+        <section id="historia">
+            <h2>1. História (Geschichte)</h2>
+            <p><strong>Rammstein</strong> é uma banda alemã de **Neue Deutsche Härte** (Nova Dureza Alemã), formada em Berlim em janeiro de 1994. O sexteto possui a formação original e inalterada, um fato raro no mundo do Rock/Metal:</p>
+            <ul>
+                <li><strong>Till Lindemann</strong> (Vocal)</li>
+                <li><strong>Richard Z. Kruspe</strong> (Guitarra/Backing Vocals)</li>
+                <li><strong>Paul H. Landers</strong> (Guitarra/Backing Vocals)</li>
+                <li><strong>Oliver "Ollie" Riedel</strong> (Baixo)</li>
+                <li><strong>Christoph "Doom" Schneider</strong> (Bateria)</li>
+                <li><strong>Christian "Flake" Lorenz</strong> (Teclados)</li>
+            </ul>
+            <p>A banda surgiu de uma ideia de **Richard Z. Kruspe**, que queria fundar um projeto que combinasse o som de guitarras pesadas com elementos eletrônicos e industriais. Quatro membros iniciais (Kruspe, Lindemann, Riedel e Schneider) venceram um concurso que lhes deu tempo em estúdio. Logo depois, **Paul Landers** e, por último, o tecladista **Flake Lorenz** se juntaram ao grupo. Seu nome, que significa "pedra de aríete" em alemão, é uma referência ao desastre aéreo de Ramstein (com um 'm' a mais).</p>
+            <p>Rammstein é mundialmente famosa por suas apresentações ao vivo grandiosas e teatrais, repletas de **pirotecnia** e uma estética provocativa.</p>
+        </section>
 
-<!-- Modal -->
-<div id="modal" onclick="closeModal()">
-  <span>&times;</span>
-  <img id="modal-img" src="" alt="">
-</div>
+        ---
 
-<div id="watermark">César Trivelato</div>
+        <section id="discografia">
+            <h2>2. Discografia (Studioalben)</h2>
+            <p>A seguir, os álbuns de estúdio da banda. Clique nos links para mais informações (caso o site seja expandido no futuro).</p>
+            
+            <ul class="album-list">
+                <li><strong>Herzeleid</strong> (1995)</li>
+                <li><strong>Sehnsucht</strong> (1997)</li>
+                <li><strong>Mutter</strong> (2001)</li>
+                <li><strong>Reise, Reise</strong> (2004)</li>
+                <li><strong>Rosenrot</strong> (2005)</li>
+                <li><strong>Liebe ist für alle da</strong> (2009)</li>
+                <li><strong>"Untitled"</strong> (Também conhecido como <em>Rammstein</em>, 2019)</li>
+                <li><strong>Zeit</strong> (2022)</li>
+            </ul>
+        </section>
 
-<footer>Todos os direitos reservados a Rammstein</footer>
+        ---
 
-<script>
-// Itens para Galeria Geral (adicione suas próprias fotos)
-const galleryItems = [
-  { name: "Foto Exemplo 1", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Example.jpg/240px-Example.jpg" },
-  { name: "Foto Exemplo 2", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Example.jpg/240px-Example.jpg" }
-];
+        <section id="equipamento">
+            <h2>3. Configuração de Timbre e Equipamento (Amps & Pedals)</h2>
+            <p>O timbre de guitarra do Rammstein é uma das marcas registradas da banda, conhecido por ser **denso, pesado e extremamente coeso** (<em>tight</em>), com afinação geralmente em Drop C (C-G-C-F-A-D) ou Standard D (D-G-C-F-A-D).</p>
 
-// Itens Rammstein
-const rammsteinItems = [
-  { name: "Herzeleid (1995)", img: "https://upload.wikimedia.org/wikipedia/en/5/5d/Rammstein_-_Herzeleid.png" },
-  { name: "Sehnsucht (1997)", img: "https://upload.wikimedia.org/wikipedia/en/f/f7/Rammstein_-_Sehnsucht.png" },
-  { name: "Mutter (2001)", img: "https://upload.wikimedia.org/wikipedia/en/5/5b/Rammstein_-_Mutter.png" },
-  { name: "Reise, Reise (2004)", img: "https://upload.wikimedia.org/wikipedia/en/2/2b/Rammstein_-_Reise_Reise.png" },
-  { name: "Rosenrot (2005)", img: "https://upload.wikimedia.org/wikipedia/en/c/c9/Rammstein_Rosenrot.png" },
-  { name: "Liebe ist für alle da (2009)", img: "https://upload.wikimedia.org/wikipedia/en/0/0e/Rammstein_Liebe_ist_f%C3%BCr_alle_da.png" },
-  { name: "Rammstein (2019)", img: "https://upload.wikimedia.org/wikipedia/en/6/61/Rammstein_-_Rammstein_%28album%29.png" },
-  { name: "Zeit (2022)", img: "https://upload.wikimedia.org/wikipedia/en/d/dc/Rammstein_-_Zeit.png" },
-  { name: "Pedal Distortion Marshall", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Guitar_effects_icon.svg/240px-Guitar_effects_icon.svg.png" },
-  { name: "Pedal Delay Boss", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Guitar_effects_icon.svg/240px-Guitar_effects_icon.svg.png" },
-  { name: "Foto Show 1", img: "https://upload.wikimedia.org/wikipedia/commons/8/85/Rammstein_live_2016.jpg" },
-  { name: "Foto Show 2", img: "https://upload.wikimedia.org/wikipedia/commons/0/0a/Rammstein_Wacken_2013.jpg" }
-];
+            <h3>Amplificadores e Cabinets (Amps)</h3>
+            <p>Os amplificadores favoritos ao longo da carreira incluem:</p>
+            <ul>
+                <li><strong>Mesa/Boogie Dual Rectifier:</strong> Usado amplamente no começo, especialmente no canal "Vintage" ou "Modern" (alto ganho), contribuindo para a base do timbre clássico.</li>
+                <li><strong>ENGL (Powerball/Fireball):</strong> Amplificadores alemães de alto ganho que se tornaram um dos pilares do som da banda, fornecendo clareza e ataque (punch).</li>
+                <li><strong>Tech 21 SansAmp PSA-1:</strong> Um pré-amplificador de rack que foi crucial para a sonoridade dos primeiros álbuns, ajudando a dar uma textura "industrial" e agressiva ao timbre.</li>
+                <li><strong>Cabinets (Caixas):</strong> Geralmente Mesa/Boogie ou ENGL com alto-falantes Celestion Vintage 30, microfonados com Shure SM57s.</li>
+            </ul>
+            
+            <h3>Pedais e Efeitos (Pedals/FX)</h3>
+            <p>Embora muito do timbre venha dos amplificadores de alto ganho, alguns pedais são essenciais:</p>
+            <ul>
+                <li><strong>Boost/Overdrive:</strong> Um **Ibanez Tube Screamer (TS808 ou TS9)** ou similar é usado frequentemente com o <em>Drive</em> no mínimo e o <em>Level</em> (Volume) no máximo, para "apertar" (<em>tighten</em>) o baixo e adicionar médios na frente do amplificador.</li>
+                <li><strong>Noise Gate:</strong> Essencial para controlar o ruído excessivo de timbres de alto ganho. **Boss NS-2** ou **ISP Decimator** são escolhas comuns para metal.</li>
+                <li><strong>Chorus:</strong> Usado sutilmente em algumas passagens limpas ou atmosféricas para adicionar profundidade e modulação (por exemplo, no **Boss CE-5**).</li>
+                <li><strong>Oitavador/Pitch Shifter:</strong> Para criar a sensação de um som ainda mais profundo e grave em certas músicas.</li>
+            </ul>
 
-// Modal
-function openModal(src, alt){
-  document.getElementById('modal-img').src = src;
-  document.getElementById('modal-img').alt = alt;
-  document.getElementById('modal').style.display = "flex";
-}
-function closeModal(){
-  document.getElementById('modal').style.display = "none";
-  document.getElementById('modal-img').src = "";
-}
+            <p class="nota"><strong>NOTA SOBRE CONFIGURAÇÕES DETALHADAS:</strong> A Rammstein, como a maioria das bandas de Metal Industrial, usa múltiplos amplificadores e camadas de som (<em>double tracking</em>) para criar a sua parede sonora. As configurações exatas (ganho, agudos, médios, graves) mudam para cada álbum e música, e são segredos de produção. O mais importante é o uso de um amplificador **High-Gain de estilo moderno** com um pedal **Overdrive de baixo ganho** para "apertar" o som.</p>
+        </section>
 
-// Mostrar abas
-function openTab(tab){
-  document.querySelectorAll('.tab').forEach(t => t.style.display='none');
-  document.getElementById(tab).style.display = (tab === 'about' ? 'block' : 'grid');
-  filterItems();
-}
+    </div>
 
-// Filtrar fotos
-function filterItems(){
-  const val = document.getElementById('search').value.toLowerCase();
-  const galleryDiv = document.getElementById('gallery');
-  galleryDiv.innerHTML = galleryItems
-    .filter(i => i.name.toLowerCase().includes(val))
-    .map(i => `<div class="item" onclick="openModal('${i.img}','${i.name}')"><img src="${i.img}" alt="${i.name}"><p>${i.name}</p></div>`).join('');
-  
-  const rammDiv = document.getElementById('rammstein');
-  rammDiv.innerHTML = rammsteinItems
-    .filter(i => i.name.toLowerCase().includes(val))
-    .map(i => `<div class="item" onclick="openModal('${i.img}','${i.name}')"><img src="${i.img}" alt="${i.name}"><p>${i.name}</p></div>`).join('');
-}
+    <footer>
+        <div class="watermark">Todos Direitos Reservados à Rammstein</div>
 
-// Inicializa
-openTab('gallery');
-</script>
+        <section id="links">
+            <h3>Links Oficiais e Fan</h3>
+            <div class="social-links">
+                <a href="https://www.rammstein.de/" target="_blank">Site Oficial</a>
+                <a href="https://shop.rammstein.de/en" target="_blank">Loja Oficial</a>
+                <a href="https://www.facebook.com/Rammstein/" target="_blank">Facebook</a>
+                <a href="https://www.instagram.com/rammsteinofficial/" target="_blank">Instagram R+</a>
+                <a href="https://www.youtube.com/@RammsteinOfficial" target="_blank">YouTube</a>
+                <a href="https://www.tiktok.com/@rammstein" target="_blank">TikTok</a>
+                |
+                <a href="https://www.instagram.com/dunkelhei7" target="_blank">Meu Instagram: @dunkelhei7</a>
+            </div>
+        </section>
+    </footer>
 
 </body>
 </html>
